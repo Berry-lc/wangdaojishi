@@ -4,7 +4,7 @@
 
 1.1
 
-![image-20230223235555864](https://p.ipic.vip/3squc0.png)
+![image-20230224003009701](https://cdn.jsdelivr.net/gh/Berry-lc/wangdaojishi@pic/uPic/image-20230224003009701.png)
 
 ```c
 #include <stdio.h>
@@ -29,7 +29,7 @@ int main(void) {
 
 1.2
 
-![image-20230223235640807](https://p.ipic.vip/epnys8.png)
+![image-20230223235640807](https://cdn.jsdelivr.net/gh/Berry-lc/wangdaojishi@pic/uPic/epnys8.png)
 
 我的算法
 
@@ -98,3 +98,5 @@ int main()
 1.3
 
 ![image-20230223235729628](https://p.ipic.vip/z39wjz.png)
+
+![image-20230224003438399](https://cdn.jsdelivr.net/gh/Berry-lc/wangdaojishi@pic/uPic/image-20230224003438399.png)
