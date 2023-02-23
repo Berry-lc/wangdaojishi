@@ -4,7 +4,7 @@
 
 1.1
 
-![image-20230224003009701](https://cdn.jsdelivr.net/gh/Berry-lc/wangdaojishi@pic/uPic/image-20230224003009701.png)
+![image-20230224005300363](https://s2.loli.net/2023/02/24/aMhOkyjt497G1Uq.png)
 
 ```c
 #include <stdio.h>
