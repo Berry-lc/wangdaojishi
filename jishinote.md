@@ -4,6 +4,8 @@
 
 1.1
 
+![image-20230223235555864](https://p.ipic.vip/3squc0.png)
+
 ```c
 #include <stdio.h>
 
@@ -26,6 +28,8 @@ int main(void) {
 ```
 
 1.2
+
+![image-20230223235640807](https://p.ipic.vip/epnys8.png)
 
 我的算法
 
@@ -56,3 +60,41 @@ int main()
 }
 ```
 
+参考算法
+
+```c
+#include<stdio.h>
+#include <stdbool.h>
+
+int Reverse(int n)
+{
+    int reverse=0;
+    int remain;//每次的余数
+    while(true)
+    {
+        remain=n%10;
+        reverse=remain+reverse*10;
+        n=n/10;
+        if(n==0)
+        {
+            break;
+        }
+    }
+    return reverse;
+}
+int main()
+{
+    int n,j;
+    for(n=1001;n<=9999;n++)
+    {
+        j= Reverse(n);
+        if(n*9==j)
+            printf("%d\n",n);
+    }
+    return 0;
+}
+```
+
+1.3
+
+![image-20230223235729628](https://p.ipic.vip/z39wjz.png)
