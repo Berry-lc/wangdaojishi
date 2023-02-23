@@ -30,7 +30,6 @@ int main(void) {
 我的算法
 
 ```c
-
 #include<stdio.h>
 int main()
 {
