@@ -213,5 +213,25 @@ while(scanf("%d",&h)!=EOF){}
 
 ![image-20230224183633915](https://s2.loli.net/2023/02/24/a3T7Bs2PqjuERUZ.png)
 
- 
+##### scanf
+
+1.scanf的返回值是一个int,返回读取内容的个数
+
+2.ctrl+D 文件终止符(ctrl+Z)
+
+##### 通用方法——使用二维数组解决打印图案的问题
+
+<img src="https://s2.loli.net/2023/02/24/cXxlnLw7vKEaOY4.png" alt="image-20230224193542351" style="zoom:150%;" />
+
+1.定二维数组的范围
+
+下底边长——3h-2
+
+高——h
+
+上底边长——h
+
+数组范围arr\[0][0]——arr\[h-1][3h-3]
+
+2.先全部填上空格,再从下往上填*
 
