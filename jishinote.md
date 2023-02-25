@@ -1,6 +1,6 @@
 # 王道机试笔记
 
-## chapter1枚举和模拟
+## Chapter1枚举和模拟
 
 ### 枚举
 
@@ -234,4 +234,154 @@ while(scanf("%d",&h)!=EOF){}
 数组范围arr\[0][0]——arr\[h-1][3h-3]
 
 2.先全部填上空格,再从下往上填*
+
+代码:
+
+```c
+#include<stdio.h>
+char arr[1000][3000];//定义一个全局的数组
+int main()
+{
+    int h;
+    while(scanf("%d",&h)!=EOF)
+    {
+        for(int i=0;i<h;i++) {//区域全部填上空格
+            for (int j = 0; j < 3 * h - 2; j++) {
+                arr[i][j] = ' ';//一个字符要用单引号！！！
+            }
+        }
+        for(int i=h-1;i>=0;i--){
+            for(int j=2*((h-1)-i);j<3*h-2;j++){
+                arr[i][j]='*';//一个字符要用单引号！！！
+            }
+        }
+        for(int i=0;i<h;i++){//输出数组
+            for(int j=0;j<3*h-2;j++){
+                printf("%c",arr[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
+```
+
+##### 函数的作用域
+
+```c
+int i;\\作用于全部
+```
+
+```c
+for(int i=;;){}\\只作用于循环内
+```
+
+##### C风格的字符串设计
+
+c语言中,用字符数组来处理字符串
+
+![image-20230225153333156](https://s2.loli.net/2023/02/25/eic5wYlLhCnxQp1.png)
+
+char二维数组——〉数组的数组
+
+```c
+\\读取一个字符串
+char str[];
+scanf("%s",str)
+\\输出一个字符串
+printf("%s",str)
+```
+
+代码的改进
+
+```c
+arr[i][3*h-2]="\0";\\用来指示每一行字符串的结束
+\\打印代码
+for(int i=0;i<3*h-2;i++){
+printf("%s",arr[i])
+}
+```
+
+图案打印问题的一般思路
+
+1.申请二维数组(固定大小,可以放在全局变量上)
+
+2.根据条件,从任意方向开始,设置二维数组
+
+3.把二维数组每一行的边界最后一个位置,使用"\0"赋值(可以在第一步将所有位置设为"\0")
+
+4.使用printf(%s),配合循环,打印每一行 
+
+#### 1.5叠筐
+
+![image-20230225161013428](https://s2.loli.net/2023/02/25/maXTGdPfHtozsDv.png)
+
+<img src="https://s2.loli.net/2023/02/25/H6b9qCwL4JgEviy.png" alt="image-20230225161035856" style="zoom: 67%;" />
+
+
+
+
+
+## Charpter2排序和查找
+
+### 排序
+
+使用库函数  sort   c++引入
+
+```c++
+#include<algorithm>
+using namespace std;
+```
+
+#### 2.1
+
+![image-20230225170333518](https://s2.loli.net/2023/02/25/7H8ZL2I5wQqXnSO.png)
+
+代码:
+
+```c++
+#include<cstdio>
+#include<algorithm>
+using namespace std;
+int main(){
+    int n;
+    int arr[101];
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    sort(arr,arr+n);//排序
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+}
+```
+
+##### 库函数sort
+
+```c++
+sort(begin,end)\\起点和终点
+```
+
+![image-20230225170933551](https://s2.loli.net/2023/02/25/youVFJMgXzR196W.png)
+
+```c++
+int arr[]\\定义
+arr[0] arr[1]\\元素
+arr   \\0号元素的地址
+arr+i  \\i号元素的地址
+```
+
+默认结果:升序排序
+
+设计排序的规则——〉设计比较和交换的条件
+
+```c++
+sort(left,right,comp) \\函数重载:不同参数的函数,可以有相同的名字
+\\ left——第一个元素 right——尾后   comp——比较和交换的条件
+```
+
+目标:降序排序——〉设计交换条件:lhs〉rhs 不交换
+
+
 
