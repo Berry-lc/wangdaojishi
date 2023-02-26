@@ -405,4 +405,118 @@ sort(arr,arr+n,comp)
 
 ![image-20230225175853354](https://s2.loli.net/2023/02/25/4F8cwPC3GgY6HE1.png)
 
- 
+#####  我的代码:
+
+```c++
+#include "cstdio"
+#include"algorithm"
+using namespace std;
+int comp(int l,int r){
+    if(l>r){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+int main(){
+    int arr[10];
+    int arrji[10];
+    int arrou[10];
+    for(int i=0;i<10;i++){
+        scanf("%d",&arr[i]);
+    }
+    int numji=0,numou=0;
+    for(int i=0;i<10;i++) {
+        if (arr[i] % 2 == 0) {
+            arrou[numou] = arr[i];
+            numou++;
+        } else {
+            arrji[numji] = arr[i];
+            numji++;
+        }
+    }
+    sort(arrji,arrji+numji,comp);
+    sort(arrou,arrou+numou);
+    for(int i=0;i<numji;i++){
+        printf("%d ",arrji[i]);
+    }
+    for(int i=0;i<numou;i++){
+        printf("%d ",arrou[i]);
+    }
+}
+```
+
+什么情况下不发生交换?
+
+1左边奇数右边是偶数
+
+2左边奇数大右边奇数小
+
+3左边偶数小右边偶数大
+
+##### 运用comp函数的代码
+
+```c++
+#include "cstdio"
+#include"algorithm"
+using namespace std;
+bool comp(int l,int r){
+    if(l%2!=0&&r%2==0 ||
+    l%2!=0&&r%2!=0&&l>r ||
+    l%2==0&&r%2==0&&l<r){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+int main(){
+    int arr[10];
+    for(int i=0;i<10;i++){
+        scanf("%d",&arr[i]);
+    }
+    sort(arr,arr+10,comp);
+    for(int i=0;i<10;i++){
+        printf("%d ",arr[i]);
+    }
+}
+```
+
+#### 2.3成绩排序(*)(结构体)
+
+![image-20230226131320481](https://s2.loli.net/2023/02/26/gxP4ibaw15G2MKR.png)
+
+##### 自定义类型
+
+```c++
+struct Student{
+	\\成员
+
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 2.3成绩排序(*)
+
+![image-20230226132007916](https://s2.loli.net/2023/02/26/GX7PMtldNKFewvr.png)
+
+
+
