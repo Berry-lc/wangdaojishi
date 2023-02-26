@@ -269,11 +269,11 @@ int main()
 ##### 函数的作用域
 
 ```c
-int i;\\作用于全部
+int i;//作用于全部
 ```
 
 ```c
-for(int i=;;){}\\只作用于循环内
+for(int i=;;){}//只作用于循环内
 ```
 
 ##### C风格的字符串设计
@@ -285,18 +285,18 @@ c语言中,用字符数组来处理字符串
 char二维数组——〉数组的数组
 
 ```c
-\\读取一个字符串
+//读取一个字符串
 char str[];
 scanf("%s",str)
-\\输出一个字符串
+//输出一个字符串
 printf("%s",str)
 ```
 
 代码的改进
 
 ```c
-arr[i][3*h-2]="\0";\\用来指示每一行字符串的结束
-\\打印代码
+arr[i][3*h-2]="\0";//用来指示每一行字符串的结束
+//打印代码
 for(int i=0;i<3*h-2;i++){
 printf("%s",arr[i])
 }
@@ -366,22 +366,43 @@ sort(begin,end)\\起点和终点
 ![image-20230225170933551](https://s2.loli.net/2023/02/25/youVFJMgXzR196W.png)
 
 ```c++
-int arr[]\\定义
-arr[0] arr[1]\\元素
-arr   \\0号元素的地址
-arr+i  \\i号元素的地址
+int arr[]//定义
+arr[0] arr[1]//元素
+arr   //0号元素的地址
+arr+i  //i号元素的地址
 ```
 
 默认结果:升序排序
 
-设计排序的规则——〉设计比较和交换的条件
+
+
+
+
+改变排序的结果——〉设计排序的规则——〉设计比较和交换的条件
 
 ```c++
-sort(left,right,comp) \\函数重载:不同参数的函数,可以有相同的名字
-\\ left——第一个元素 right——尾后   comp——比较和交换的条件
+sort(left,right,comp) //函数重载:不同参数的函数,可以有相同的名字
+//left——第一个元素 right——尾后   comp——比较和交换的条件
 ```
 
 目标:降序排序——〉设计交换条件:lhs〉rhs 不交换
 
+代码:
 
+```c++
+bool comp(int lhs,int rhs){//但返回值为true时,则不进行交换,当为false时,交换
+	if(lhs>rhs){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+sort(arr,arr+n,comp)
+```
 
+#### 2.2整数奇偶排序
+
+![image-20230225175853354](https://s2.loli.net/2023/02/25/4F8cwPC3GgY6HE1.png)
+
+ 
