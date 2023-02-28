@@ -485,7 +485,7 @@ int main(){
 }
 ```
 
-#### 2.3成绩排序(*)(结构体)
+#### 2.3成绩排序(使用结构体)
 
 ![image-20230226131320481](https://s2.loli.net/2023/02/26/gxP4ibaw15G2MKR.png)
 
@@ -498,23 +498,40 @@ struct Student{
 };
 ```
 
+我的代码:
 
+```c++
+#include<cstdio>
+#include<algorithm>
+using namespace std;
+struct Student{
+    int num;
+    int point;
+};
+bool comp(Student lhs,Student rhs){
+    if(lhs.point>rhs.point ||
+    lhs.point==rhs.point &&lhs.num>rhs.num ){
+        return false;
+    }
+    else
+        return true;
+}
+int main(){
+    int n;
+    scanf("%d",&n);
+    Student arr[n];
+    for(int i=0;i<n;i++){
+        scanf("%d %d",&arr[i].num,&arr[i].point);
+    }
+    sort(arr,arr+n,comp);
+    for (int i=0;i<n;i++) {
+        printf("%d %d\n", arr[i].num, arr[i].point);
+    }
+    return 0;
+}
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### 2.3成绩排序(*)
+#### 2.4成绩排序(printf的格式控制)
 
 ![image-20230226132007916](https://s2.loli.net/2023/02/26/GX7PMtldNKFewvr.png)
 
