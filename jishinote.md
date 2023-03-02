@@ -537,3 +537,46 @@ int main(){
 
 
 
+### 查找
+
+#### 2.5 顺序查找
+
+![image-20230301171420513](https://s2.loli.net/2023/03/01/pa78bRdAJuV5vwl.png)
+
+##### 代码：
+
+```c
+#include<cstdio>
+int main(){
+    int n;
+    scanf("%d",&n);
+    int arr[200];
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    int x;
+    scanf("%d",&x);
+  	int i;
+    for(i=0;i<n;i++){ //查找
+        if(arr[i]==x){
+            printf("%d\n",i);
+          	break;
+        }
+    }
+  	if(i==n){
+      printf("-1\n"); 
+    }
+    return 0;
+}
+```
+
+##### 顺序查找问题
+
+有多个x需要查找时——效率不高
+
+二分查找
+
+注意：1.有序数组 2.迭代和边界情况
+
+
+
