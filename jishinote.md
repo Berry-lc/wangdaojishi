@@ -580,3 +580,109 @@ int main(){
 
 
 
+## Charpter3字符串的基本使用
+
+### c风格的字符串进行输入和输出：
+
+字符数组 以“\0”作为正文结束的标志（要占空间）
+
+使用```printf```和```scanf```
+
+### c风格转化为c++风格
+
+```c++
+#include<string>
+using namespace std;
+string var=str;
+```
+
+### 将c++风格转化为c方便输入输出
+
+```c++
+printf("%s",var,var.c_str());
+```
+
+### 字符串的相关操作：
+
+```c++
+scanf("%s",buf); //只能读取一个单词
+fget(buf,100,stdin);//读取一整行，包括末尾的换行符
+```
+
+### c++风格的字符串
+
+#### 求字符串长度
+
+```c++
+printf("lenth of str =%u\n",str.size());//也可以用lenth()
+```
+
+#### 访问字符串中每一个字符
+
+##### 循环
+
+```c++
+for(unsigned int i=0;i<str.size();i++){
+printf("%c\n",str[i]);
+}
+```
+
+##### 迭代器
+
+```c++
+for(string::iterator it=str.begin();it!=str.end();it++){
+printf("%c\n",*it);//*it 通过地址访问元素
+}
+```
+
+#### 操作字符串的内容
+
+##### 连接：+（只针对c++风格的字符串）
+
+```c++
+str=str+"world";//+在c++风格的字符串中表示连接操作
+```
+
+##### 删除：erase
+
+```c++
+str.erase();//括号里面写删除元素的下表
+str.erase(str.size()-1);//删除最后一个元素
+```
+
+##### 清空：clear
+
+```c++
+str.clear();
+```
+
+##### 查找：string的find方法
+
+find的返回值：找到了——〉匹配内容的起点的下标
+
+​                          没有找到——〉返回strin::npos
+
+```c++
+#include<cstdio>
+#include<string>
+using namespace std;
+int main(){
+string str ="howareyou";
+int pos =str.find("are");//
+if(pos!=string::npos){
+	printf("FIND,pos=%d\n",pos);
+}
+else{
+	printf("NOT FIND\n");
+}
+}
+```
+
+## Charpter4线性数据结构
+
+### Vector
+
+
+
+
+
