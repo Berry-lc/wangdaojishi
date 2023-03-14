@@ -778,7 +778,23 @@ push_back n个元素，时间复杂度：O(N)
 
 ### 队列
 
+场景：“公平的等待”——〉广度优先遍历
 
+#### 队列的实现
+
+```c++
+#include<queue>
+using namespace std;
+queu e<int> q;
+q.push(i) //入队，从队尾
+q.pop()  //出队
+q.empty()  //判断队列是否为空
+q.front()  //队头
+```
+
+#### 4.2约瑟夫问题
+
+![image-20230315014312564](https://s2.loli.net/2023/03/15/LbCKtkNdwW742Ei.png)
 
 
 
