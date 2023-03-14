@@ -730,7 +730,7 @@ insert     在指定位置的前面插入
 using namespace std;
 int shifouyingshuhuowanshu(int n){
     vector<int> yinzi;
-    for(int i=0;i<n;i++){
+    for(int i=1;i<n;i++){     //除法要从1开始，否则会出现浮点错误
         if(n%i==0){
             yinzi.push_back(i);//可以不用建立因子的数组，直接加在sum中
         }
@@ -769,3 +769,12 @@ int main() {
 ```
 
 #### Vector的原理
+
+#### Vector的扩容机制
+
+size逐渐增大到capacity——〉申请内存2*capacity——〉拷贝——〉释放内存
+
+push_back n个元素，时间复杂度：O(N)
+
+
+
