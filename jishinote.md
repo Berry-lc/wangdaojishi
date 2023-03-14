@@ -696,12 +696,76 @@ c++风格的容器
 ```c++
 #include<vector>
 using namespace std;
-vector<int> name；    //<>中写元素类型  默认长度是零 
+vector<int> vec1；//<>中写元素类型  默认长度是零 
+vec1.push_back(1);//尾部扩容
+vector<int> vec2 {1,2,3};//vector的初始化
+vector<int> vec3 (10000);//初始化一个指定大小的向量,[0]-[9999]都是0
 ```
 
+#### 访问、修改、调整vector
 
+```c++
+.push_back //扩容，效率最高
+.pop_back() //弹出最后一个元素
+vec[i] //i从0开始 i>=n会越界
+//迭代器
+```
 
+#### 随机位置的插入和删除
 
+![image-20230314174137029](https://s2.loli.net/2023/03/14/OZDoRKjlrLM5h4N.png)
 
+insert     在指定位置的前面插入   
 
+#### 4.1完数和盈数
 
+![image-20230314174531390](https://s2.loli.net/2023/03/14/Q21LqSzPBTRuy7s.png)
+
+##### 代码
+
+```c++
+#include <iostream>
+#include<cstdio>
+#include<vector>
+using namespace std;
+int shifouyingshuhuowanshu(int n){
+    vector<int> yinzi;
+    for(int i=0;i<n;i++){
+        if(n%i==0){
+            yinzi.push_back(i);//可以不用建立因子的数组，直接加在sum中
+        }
+    }
+    int sum=0;
+    for(int i=0;i<yinzi.size();i++){
+        sum=sum+yinzi[i];
+    }
+    if(sum==n)
+        return 0;
+    else if(sum>n)
+        return 1;
+    else
+        return 2;
+}
+int main() {
+    vector<int> wanshu,yingshu;
+    for(int i=2;i<=60;i++){
+        int j;
+        j=shifouyingshuhuowanshu(i);
+        if(j==0)
+            wanshu.push_back(i);
+        else if(j==1)
+            yingshu.push_back(i);
+    }
+    printf("E:");
+    for(int i=0;i<wanshu.size();i++){
+        printf(" %d",wanshu[i]);
+    }
+    printf("\nG:");
+    for(int i=0;i<yingshu.size();i++){
+        printf(" %d",yingshu[i]);
+    }
+    return 0;
+}
+```
+
+#### Vector的原理
