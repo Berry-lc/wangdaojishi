@@ -776,5 +776,9 @@ size逐渐增大到capacity——〉申请内存2*capacity——〉拷贝——�
 
 push_back n个元素，时间复杂度：O(N)
 
+### 队列
+
+
+
 
 
