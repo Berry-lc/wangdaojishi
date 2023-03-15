@@ -796,5 +796,164 @@ q.front()  //队头
 
 ![image-20230315014312564](https://s2.loli.net/2023/03/15/LbCKtkNdwW742Ei.png)
 
+##### 我的代码
 
+```c++
+#include<cstdio>
+#include<queue>
+using namespace std;
+int main(){
+    int n,p,m;
+    scanf("%d %d %d",&n,&p,&m);
+        queue<int> qu1;
+        for(int i=1;i<=n;i++){
+            qu1.push(i);
+        }
+        for(int i=1;i<p;i++){//让p号在最前面
+            int tmp;
+            tmp=qu1.front();
+            qu1.pop();
+            qu1.push(tmp);
+        }
+        while(true) {
+            for (int i = 1; i < m; i++) {
+                int tmp;
+                tmp = qu1.front();
+                qu1.pop();
+                qu1.push(tmp);
+            }
+            printf("%d,", qu1.front());
+            qu1.pop();
+            if (qu1.empty())
+                break;
+        }
+        return 0;
+    }
+```
 
+![image-20230315162706075](https://s2.loli.net/2023/03/15/LSkrlaegsHN4u3f.png)
+
+##### 参考代码
+
+```c++
+#include<cstdio>
+#include<queue>
+using namespace std;
+int main() {
+    int n, p, m;
+    while (true) {//实现当输入三个0时，开始程序
+        scanf("%d %d %d", &n, &p, &m);
+        if (n == 0 && p == 0 && m == 0) {
+            break;
+        }
+        queue<int> children;
+        for (int i = p, j = 0; j < n; ++j) {//把队列排好队
+            children.push(i);
+            i++;//p->p+1->....n->1->p-1
+            if (i ==n+1){
+                i = 1;
+            }
+        }
+        int num = 1;//开始喊号
+        while (true) {
+            int cur = children.front();
+            children.pop();
+            if (num == m) {
+                num = 1;
+                if (children.empty()) {
+                    printf("%d\n", cur);
+                    break;
+                } else
+                    printf("%d,", cur);
+            } else {
+                num = num + 1;
+                children.push(cur);
+            }
+        }
+    }
+}
+```
+
+#### 4.3猫狗收容所
+
+![image-20230315180636149](https://s2.loli.net/2023/03/15/zn8sxdMXbvUj72V.png)
+
+##### 我的代码
+
+```c++
+#include<cstdio>
+#include<queue>
+using namespace std;
+struct operate{
+    int op1;
+    int op2;
+};
+int main(){
+    int n,op1,op2;
+    queue<operate> operates;
+    queue<int> dogs,cats,all,shouyang;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){//输入操作序列
+        scanf("%d%d",&op1,&op2);
+        struct operate op;
+        op.op1=op1;
+        op.op2=op2;
+        operates.push(op);
+    }
+    for(int i=0;i<n;i++) {
+        struct operate op;
+        op = operates.front();
+        operates.pop();
+        if (op.op1 == 1) {//若第一个数为1，则有动物进入
+            if (op.op2 > 0) {
+                dogs.push(op.op2);
+                all.push(op.op2);
+            }
+            else if (op.op2 < 0) {
+                cats.push(op.op2);
+                all.push(op.op2);
+            }
+            else
+                continue;
+        }
+        else if (op.op1 == 2) {//第一个数为2，有收养
+            if (op.op2 == 0) {
+                int tmp;
+                while (true) {
+                    tmp = all.front();
+                    if (tmp != dogs.front()&&tmp != cats.front()) {
+                        all.pop();
+                    } else
+                        break;
+                }
+                shouyang.push(tmp);
+                if (tmp > 0)
+                    dogs.pop();
+                else
+                    cats.pop();
+            }
+            else if (op.op2 == 1) {
+                int tmp;
+                tmp = dogs.front();
+                dogs.pop();
+                shouyang.push(tmp);
+            }
+            else if (op.op2 == -1) {
+                int tmp;
+                tmp = cats.front();
+                cats.pop();
+                shouyang.push(tmp);
+            }
+            else
+                continue;
+        }
+        else
+            continue;
+    }
+    for(int i=0,j=shouyang.size();i<j;i++){//在输出队列时，要先定义一个队列的大小，再执行for
+        printf("%d ",shouyang.front());
+        shouyang.pop();
+    }
+    return 0;
+}
+```
