@@ -878,7 +878,7 @@ int main() {
 
 ![image-20230315180636149](https://s2.loli.net/2023/03/15/zn8sxdMXbvUj72V.png)
 
-##### 我的代码
+##### 我的代码（用三个队列）
 
 ```c++
 #include<cstdio>
@@ -957,3 +957,5 @@ int main(){
     return 0;
 }
 ```
+
+参考代码 
