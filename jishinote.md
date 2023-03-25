@@ -776,9 +776,9 @@ size逐渐增大到capacity——〉申请内存2*capacity——〉拷贝——�
 
 push_back n个元素，时间复杂度：O(N)
 
-### 队列
+### 队列——“公平的等待”——〉广度优先遍历
 
-场景：“公平的等待”——〉广度优先遍历
+场景：“
 
 #### 队列的实现
 
@@ -958,4 +958,163 @@ int main(){
 }
 ```
 
-参考代码 
+##### 参考代码（两个队列）
+
+![image-20230318170503340](https://s2.loli.net/2023/03/18/lAbBsq6pvcLSotw.png)
+
+### 栈——有优先级差别的等待
+
+```c++
+stack<typename> myStack//初始化
+.size()//大小
+.push()//压栈
+.top()//栈顶元素
+.pop()//弹出栈顶元素
+.empty()
+```
+
+### 整数的数据类型
+
+```c++
+int //4B——32bit      -2^31~2^31-1
+unsigned int//			0~2^32-1
+long long//8B——64bit		
+unsigned long long//
+```
+
+
+
+#### 4.4反转序列
+
+![image-20230321163749608](https://s2.loli.net/2023/03/21/y1r7RdTjKwhHbiL.png)
+
+##### 代码
+
+```c++
+#include<cstdio>
+#include<stack>
+using namespace std;
+int main() {
+    int n;
+    stack<long long> stack1;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        long long j;
+        scanf("%lld",&j);//读取longlong类型的十进制数
+        stack1.push(j);
+    }
+    while(!stack1.empty()){
+        printf("%lld ",stack1.top());
+        stack1.pop();
+    }
+    printf("\n");
+    return 0;
+}
+```
+
+### 读取字符串的操作
+
+```c++
+//读取单词
+char buf[1000];
+scanf("%s",buf);//当ctrl+d时，返回EOF
+//读取一行
+cahr buf[1000];//当ctrl+d时，返回NULL
+fgets(buf,1000,stdin);//会额外读入换行符
+//string str=buf;  str.pop_back(); 
+```
+
+#### 4.5括号匹配问题
+
+![image-20230321225743416](https://s2.loli.net/2023/03/21/uRvKInVq8lJNofd.png)
+
+![image-20230321235908849](https://s2.loli.net/2023/03/21/CFxD4jZ2AeYTWp7.png)
+
+##### 代码**字符串的运用
+
+```c++
+#include<cstdio>
+#include<stack>
+#include<string>
+using namespace std;
+int main() {
+    char h[150];
+    while(fgets(h,200,stdin)!=NULL){//fgets配合while实现未知数量的输入
+        string str=h;
+        str.pop_back();//去掉额外的换行符
+        stack<unsigned> stack1;//存储左括号的下标
+        string result;
+        for(int i=0;i<str.length();i++){
+            result.push_back(' ');
+            if(str[i] == '('){
+                stack1.push(i);
+                result[i]='$';//先认为是非法
+            }
+            else if(str[i]==')'){
+                if(!stack1.empty()) {
+                    int j = stack1.top();
+                    result[j] = ' ';
+                    stack1.pop();
+                }
+                else{
+                    result[i]='?';
+                }
+            }
+        }
+        printf("%s",h);
+        printf("%s",result.c_str());
+    }
+    return 0;
+}
+```
+
+### 表达式解析问题
+
+![image-20230322143014767](https://s2.loli.net/2023/03/22/a74wdWiEksfrbJ3.png)
+
+#### 数据结构设计
+
+```c++
+stack<char> operation;
+stack<double> num;
+```
+
+数字——〉压栈
+
+符号（低优先级）——〉压栈
+
+符号（高优先级）——〉op弹出一个 num弹出两个，进行运算，压入栈中
+
+#### 4.6 ***简单计算器
+
+![image-20230322143522812](https://s2.loli.net/2023/03/22/njEsViOLJAwDcfx.png)
+
+## Chapter5递归和分治
+
+### 递归
+
+#### 5.1 n的阶乘
+
+![image-20230323182531584](https://s2.loli.net/2023/03/23/Yty2iP4ObE8ThKB.png)
+
+##### 代码：
+
+```c++
+#include <cstdio>
+using namespace std;
+long long jiechen(long long n){
+    if(n>1)
+        return n*jiechen(n-1);
+    else
+        return 1;
+}
+int main() {
+    long long n;
+    scanf("%lld",&n);
+    printf("%lld",jiechen(n));
+}
+```
+
+#### 5.2汉诺塔
+
+![image-20230323201539646](https://s2.loli.net/2023/03/23/sMwkAcqPz4Vl9gr.png)
