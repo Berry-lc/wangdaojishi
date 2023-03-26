@@ -1294,5 +1294,67 @@ int main(){
 
 #### 遍历
 
+##### 层次遍历（广度优先遍历）
+
+辅助队列结构
+
+```c++
+void LevelOrder(TreeNode *root){
+    queue<TreeNode*>pos;
+    pos.push(root);
+    while(pos.empty()== false){
+        TreeNode *pcur=pos.front();
+        pos.pop();
+        printf("%c",pcur->data);
+        if(pcur->leftchild!=NULL){
+            pos.push(pcur->leftchild);
+        }
+        if(pcur->rightchild!=NULL){
+            pos.push(pcur->rightchild);
+        }
+    }
+}
+```
+
+##### 递归遍历
+
+```c++
+void NLRorder(TreeNode *root){
+  	if（root==NULL）
+      return;
+    printf("%c",root->data);
+    if(root->leftchild!=NULL)
+        NLRorder(root->leftchild);
+    if(root->rightchild!= NULL)
+        NLRorder(root->rightchild);
+}
+void LNRorder(TreeNode *root){
+    if（root==NULL）
+      return;
+    if(root->leftchild!=NULL)
+        LNRorder(root->leftchild);
+    printf("%c",root->data);
+    if(root->rightchild!= NULL)
+        LNRorder(root->rightchild);
+}
+void LRNorder(TreeNode *root){
+    if（root==NULL）
+      return;
+    if(root->leftchild!=NULL)
+        LRNorder(root->leftchild);
+    if(root->rightchild!= NULL)
+        LRNorder(root->rightchild);
+    printf("%c",root->data);
+}
+```
+
+#### 重建二叉树
+
+先序+中序
+
+
+
+
+
 
 
