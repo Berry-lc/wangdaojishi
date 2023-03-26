@@ -1115,6 +1115,184 @@ int main() {
 }
 ```
 
-#### 5.2汉诺塔
+#### 5.2**汉诺塔
 
 ![image-20230323201539646](https://s2.loli.net/2023/03/23/sMwkAcqPz4Vl9gr.png)
+
+假设有解决小问题的能力
+
+![image-20230325154716484](https://s2.loli.net/2023/03/25/7SHi5btUrufePQM.png)
+
+##### 代码：
+
+```c++
+#include<cstdio>
+long long hannuo(int n){
+    if(n==1)
+        return 2;
+    else
+        return 3*hannuo(n-1)+2;
+}
+int main(){
+    int n;
+    while(scanf("%d",&n)!=EOF){
+        printf("%lld\n",hannuo(n));
+    }
+    return 0;
+}
+```
+
+### 分治divide and conquer
+
+从递归到分治
+
+1. 找到大问题到小问题的转移过程（假设小问题已经解决）
+2. 找到最小问题的解决方案
+
+####  5.3
+
+![image-20230325173610194](../../../Library/Application%20Support/typora-user-images/image-20230325173610194.png)
+
+##### 代码：
+
+![image-20230325174726293](https://s2.loli.net/2023/03/25/nmLgUToKzscEtBf.png)
+
+#### 分治法的代码模版：
+
+大问题变成小问题（假设小问题已经有解）
+
+最小问题的解决方法
+
+![image-20230325175320478](https://s2.loli.net/2023/03/25/9SFa28HRmklugo1.png)
+
+#### 5.4二叉树
+
+![image-20230325175418492](https://s2.loli.net/2023/03/25/XPetMSf4rYLkZG1.png)
+
+##### 代码
+
+```c++
+#include<cstdio>
+long long num1(long long m,long long n){
+    if(m>n)
+        return 0;
+    else
+        return 1+num1(2*m,n)+num1(2*m+1,n);
+}
+int main(){
+    long long m,n;
+    while(scanf("%lld %lld",&m,&n)!=EOF){
+        printf("%lld",num1(m,n));
+    }
+    return 0;
+}
+```
+
+## Chapter6树形数据结构
+
+值传递 
+
+引用传递==》函数调用完成，会修改参数问题
+
+![image-20230325232341429](https://s2.loli.net/2023/03/25/uy1bLYqOWs94AUd.png)
+
+自由存储空间（申请堆空间）
+
+![image-20230325232929731](https://s2.loli.net/2023/03/25/AMxWKRwL1mJ9tzH.png)
+
+内存泄漏（不关心）
+
+![image-20230325233043542](https://s2.loli.net/2023/03/25/IVszLMfqmk5i2dP.png)
+
+### 二叉树
+
+设计一个类描述节点
+
+```c++
+struct TreeNode{
+  int data;
+	TreeNode * leftchild;
+	TreeNode * rightchild;
+};
+int main(){
+  TreeNode *root;
+}
+```
+
+#### 层次建树
+
+![image-20230326000607026](https://s2.loli.net/2023/03/26/uGo8Rn2HKgQhIZ4.png)
+
+```c++
+#include<cstdio>
+#include<queue>
+using namespace std;
+struct TreeNode{
+    int data;
+    TreeNode *leftchild;
+    TreeNode *rightchild;
+};
+struct QueueNode{
+    TreeNode *parent;
+    bool isleftin;
+};
+void InsertTreeNode(TreeNode *&root,queue<QueueNode*> &myQueue,char data){
+    if(data!='#'){
+        //创建二叉树节点,申请堆空间
+        TreeNode *pTreeNode=new TreeNode;
+        //(*pNode).data=data;//(*pNode).data等价于pNode->data
+        pTreeNode->data=data;
+        //队列操作
+        QueueNode *pQueueNode=new QueueNode;
+        pQueueNode->parent=pTreeNode;
+        pQueueNode->isleftin=false;
+        myQueue.push(pQueueNode);
+        if(root==NULL){
+            root=pTreeNode;
+        }
+        else{
+            QueueNode *pparent=myQueue.front();
+            if(pparent->isleftin== false){
+                pparent->parent->leftchild=pTreeNode;
+                pparent->isleftin= true;
+            }
+            else{
+                pparent->parent->rightchild=pTreeNode;
+                myQueue.pop();
+                delete pparent;
+            }
+        }
+
+        
+    }
+    else{
+        if(root!=NULL){
+            QueueNode *pparent=myQueue.front();
+            if(pparent->isleftin== false){
+                pparent->parent->leftchild=NULL;
+                pparent->isleftin= true;
+            }
+            else{
+                pparent->parent->rightchild=NULL;
+                myQueue.pop();
+                delete pparent;
+            }
+
+        }
+    }
+}
+int main(){
+    TreeNode *root=NULL;
+    char charlist[]="abc##de#g##f###";
+    queue<QueueNode*> myQueue;
+    for(int i=0;charlist[i]!='\0';i++){
+        InsertTreeNode(root,myQueue,charlist[i]);
+    }
+    return 0;
+}
+```
+
+#### 遍历
+
+
+
