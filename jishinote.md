@@ -318,7 +318,9 @@ printf("%s",arr[i])
 
 <img src="https://s2.loli.net/2023/02/25/H6b9qCwL4JgEviy.png" alt="image-20230225161035856" style="zoom: 67%;" />
 
+scanf %d %f %o   忽略空白字符
 
+scanf %c  可以读取空白空格，若前面有空格，则忽略空白字符
 
 
 
